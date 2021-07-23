@@ -1,17 +1,16 @@
 const path = require("path");
 const webpack = require("webpack");
-
-// in django change dist to './frontend/src'
-const dist = "dist"
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
     entry: "./src/index.tsx",
     output: {
-        path: path.resolve(__dirname, dist),
+        path: path.resolve(__dirname, "./static/frontend"),
         filename: "[name].js",
     },
     module: {
         rules: [
+
             {
                 test: /\.(ts|tsx|js|jsx)$/,
                 exclude: /node_modules/,
@@ -41,5 +40,6 @@ module.exports = {
         new webpack.ProvidePlugin({
             "React": "react",
         }),
+        new ESLintPlugin()
     ],
 };
